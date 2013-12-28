@@ -17,7 +17,7 @@ PODS:
   - AFNetworking/Serialization (2.0.3)
   - AFNetworking/UIKit (2.0.3):
     - AFNetworking/NSURLConnection
-  - CocoaAsyncSocket (7.3.2)
+  - CocoaAsyncSocket (7.3.3)
   - CocoaHTTPServer (2.3):
     - CocoaAsyncSocket
     - CocoaLumberjack
@@ -27,117 +27,43 @@ PODS:
   - CocoaLumberjack/Core (1.7.0)
   - CocoaLumberjack/Extensions (1.7.0):
     - CocoaLumberjack/Core
-  - Kiwi (2.2.3):
-    - Kiwi/SenTestingKit
+  - Facebook-iOS-SDK (3.11.0)
+  - iOS-Common (0.0.1):
+    - AFNetworking
+    - Facebook-iOS-SDK
+    - libextobjc/EXTScope
+    - TMCache
   - Kiwi/ARC (2.2.3)
   - Kiwi/NonARC (2.2.3)
-  - Kiwi/SenTestingKit (2.2.3):
+  - Kiwi/XCTest (2.2.3):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - libextobjc (0.3):
-    - libextobjc/EXTADT
-    - libextobjc/EXTAnnotation
-    - libextobjc/EXTAspect
-    - libextobjc/EXTBlockMethod
-    - libextobjc/EXTBlockTarget
-    - libextobjc/EXTConcreteProtocol
-    - libextobjc/EXTDispatchObject
-    - libextobjc/EXTFinalMethod
-    - libextobjc/EXTKeyPathCoding
-    - libextobjc/EXTMaybe
-    - libextobjc/EXTMixin
-    - libextobjc/EXTMultimethod
-    - libextobjc/EXTMultiObject
-    - libextobjc/EXTNil
-    - libextobjc/EXTPassthrough
-    - libextobjc/EXTPrivateMethod
-    - libextobjc/EXTProtocolCategory
-    - libextobjc/EXTSafeCategory
-    - libextobjc/EXTScope
-    - libextobjc/EXTSelectorChecking
-    - libextobjc/EXTSwizzle
-    - libextobjc/EXTSynthesize
-    - libextobjc/EXTTuple
-    - libextobjc/EXTVarargs
-    - libextobjc/NSInvocation+EXT
-    - libextobjc/NSMethodSignature+EXT
-    - libextobjc/RuntimeExtensions
-    - libextobjc/UmbrellaHeader
-  - libextobjc/EXTADT (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTAnnotation (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTAspect (0.3):
-    - libextobjc/RuntimeExtensions
-    - libffi
-  - libextobjc/EXTBlockMethod (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTBlockTarget (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTConcreteProtocol (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTDispatchObject (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTFinalMethod (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTKeyPathCoding (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTMaybe (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTMixin (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTMultimethod (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTMultiObject (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTNil (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTPassthrough (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTPrivateMethod (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTProtocolCategory (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSafeCategory (0.3):
-    - libextobjc/RuntimeExtensions
   - libextobjc/EXTScope (0.3):
     - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSelectorChecking (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSwizzle (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSynthesize (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTTuple (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTVarargs (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/NSInvocation+EXT (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/NSMethodSignature+EXT (0.3):
-    - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.3)
-  - libextobjc/UmbrellaHeader (0.3)
-  - libffi (3.0.13)
   - NLTHTTPStubServer (0.4.0):
     - CocoaHTTPServer (>= 2.3)
   - TMCache (1.2.0)
 
 DEPENDENCIES:
-  - AFNetworking
-  - Kiwi
-  - libextobjc
+  - Facebook-iOS-SDK
+  - iOS-Common (from `.`)
+  - Kiwi/XCTest
   - NLTHTTPStubServer
-  - TMCache
+
+EXTERNAL SOURCES:
+  iOS-Common:
+    :path: .
 
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
-  CocoaAsyncSocket: 977404129ec8505fee1c3701956b769e3bb10ea7
+  CocoaAsyncSocket: 50a73b79fb77f0dbb57cdc5c247c8f19e9cb3b33
   CocoaHTTPServer: 7c2fce6617f7fda0e3f4fc34f96e562caa7c7bd8
   CocoaLumberjack: be87113f649942f020a37c061c58009b6ee5ff68
+  Facebook-iOS-SDK: 2eb12f9ed04f3d3956f0a4fb0e4e60c824dcd101
+  iOS-Common: f7b7bb26a17caf6857f9a5acb6c3f10f0977608c
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
   libextobjc: 820a79dbbbc498611e04fffd07d2d52a5588e7ac
-  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   NLTHTTPStubServer: 6ed2b40b128c4fcc215352b604fae2f7f99110d2
   TMCache: 4b05e1b124d9f7e8d449640e059cff4cda17ed27
 

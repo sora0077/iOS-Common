@@ -66,6 +66,7 @@
 @end
 
 @implementation UIImageView (Network)
+@dynamic priority;
 
 - (void)setPriority:(NSOperationQueuePriority)priority
 {
@@ -80,10 +81,22 @@
 
 - (void)setImageWithURL:(NSURL *)url defaultImage:(UIImage *)defaultImage completion:(void (^)(UIImageView *, NSURL *, UIImage *, BOOL))completion
 {
-    [self setImageWithURL:url defaultImage:defaultImage cache:[TMCache sharedCache] completion:completion];
+    [self setImageWithURL:url
+             defaultImage:defaultImage
+                    queue:nil
+               completion:completion];
 }
 
-- (void)setImageWithURL:(NSURL *)url defaultImage:(UIImage *)defaultImage cache:(TMCache *)cache completion:(void (^)(UIImageView *, NSURL *, UIImage *, BOOL))completion
+- (void)setImageWithURL:(NSURL *)url defaultImage:(UIImage *)defaultImage queue:(NSOperationQueue *)queue completion:(void (^)(UIImageView *, NSURL *, UIImage *, BOOL))completion
+{
+    [self setImageWithURL:url
+             defaultImage:defaultImage
+                    cache:[TMCache sharedCache]
+                    queue:queue
+               completion:completion];
+}
+
+- (void)setImageWithURL:(NSURL *)url defaultImage:(UIImage *)defaultImage cache:(TMCache *)cache queue:(NSOperationQueue *)queue completion:(void (^)(UIImageView *, NSURL *, UIImage *, BOOL))completion
 {
     self.URL = url;
     [cache.memoryCache objectForKey:url.description block:^(TMMemoryCache *_cache, NSString *key, id object) {
@@ -108,11 +121,11 @@
                             }
                         });
                     } else {
-                        [self downloadImageWithURL:url cache:cache completion:completion];
+                        [self downloadImageWithURL:url cache:cache queue:queue completion:completion];
                     }
                 }];
             }];
-            [[UIImageView downloadQueue] addOperation:self.operation];
+            [(queue ?: [UIImageView downloadQueue]) addOperation:self.operation];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (completion) {
@@ -123,7 +136,7 @@
     }];
 }
 
-- (void)downloadImageWithURL:(NSURL *)url cache:(TMCache *)cache completion:(void(^)(UIImageView *,  NSURL *, UIImage *, BOOL))completion
+- (void)downloadImageWithURL:(NSURL *)url cache:(TMCache *)cache queue:(NSOperationQueue *)queue completion:(void(^)(UIImageView *,  NSURL *, UIImage *, BOOL))completion
 {
     [self cancel];
     self.URL = url;
@@ -150,7 +163,7 @@
     }];
 
     self.operation = operation;
-    [[UIImageView downloadQueue] addOperation:operation];
+    [(queue ?: [UIImageView downloadQueue]) addOperation:self.operation];
 }
 
 - (void)cancel
@@ -180,12 +193,31 @@
     [self setImageWithURL:url
              thumbnailURL:thumbnailURL
              defaultImage:defaultImage
+                    queue:nil
+               completion:completion];
+}
+
+- (void)setImageWithURL:(NSURL *)url thumbnailURL:(NSURL *)thumbnailURL defaultImage:(UIImage *)defaultImage queue:(NSOperationQueue *)queue completion:(void (^)(UIImageView *, NSURL *, UIImage *, BOOL))completion
+{
+    [self setImageWithURL:url
+             thumbnailURL:thumbnailURL
+             defaultImage:defaultImage
+                    queue:queue
                 thumbnail:nil
                completion:completion];
 }
 
-
 - (void)setImageWithURL:(NSURL *)url thumbnailURL:(NSURL *)thumbnailURL defaultImage:(UIImage *)defaultImage thumbnail:(void (^)(UIImageView *, NSURL *, UIImage *))thumbnail completion:(void (^)(UIImageView *, NSURL *, UIImage *, BOOL))completion
+{
+    [self setImageWithURL:url
+             thumbnailURL:thumbnailURL
+             defaultImage:defaultImage
+                    queue:nil
+                thumbnail:thumbnail
+               completion:completion];
+}
+
+- (void)setImageWithURL:(NSURL *)url thumbnailURL:(NSURL *)thumbnailURL defaultImage:(UIImage *)defaultImage queue:(NSOperationQueue *)queue thumbnail:(void (^)(UIImageView *, NSURL *, UIImage *))thumbnail completion:(void (^)(UIImageView *, NSURL *, UIImage *, BOOL))completion
 {
     completion = [completion copy];
     [[TMCache sharedCache].memoryCache objectForKey:url.description block:^(TMMemoryCache *cache, NSString *key, id object) {
@@ -198,7 +230,7 @@
         } else {
             if (thumbnailURL) {
                 self.priority = NSOperationQueuePriorityVeryHigh;
-                [self setImageWithURL:thumbnailURL defaultImage:defaultImage cache:[self thumbnailCache] completion:^(UIImageView *imageView, NSURL *_thumbnailURL, UIImage *image, BOOL cancel) {
+                [self setImageWithURL:thumbnailURL defaultImage:defaultImage cache:[self thumbnailCache] queue:queue completion:^(UIImageView *imageView, NSURL *_thumbnailURL, UIImage *image, BOOL cancel) {
                     if (not [imageView.URL isEqual:_thumbnailURL]) return;
                     if (thumbnail) {
                         thumbnail(imageView, _thumbnailURL, image);
@@ -209,7 +241,7 @@
                     if ([UIEventObserver isTracking]) return;
 
                     imageView.priority = NSOperationQueuePriorityNormal;
-                    [imageView setImageWithURL:url defaultImage:nil completion:^(UIImageView *imageView, NSURL *_url, UIImage *image, BOOL cancel) {
+                    [imageView setImageWithURL:url defaultImage:nil queue:queue completion:^(UIImageView *imageView, NSURL *_url, UIImage *image, BOOL cancel) {
                         if (not [imageView.URL isEqual:_url]) return;
                         if (completion) {
                             completion(imageView, _url, image, cancel);
@@ -218,7 +250,7 @@
                 }];
             } else {
                 self.priority = NSOperationQueuePriorityNormal;
-                [self setImageWithURL:url defaultImage:defaultImage completion:^(UIImageView *imageView, NSURL *_url, UIImage *image, BOOL cancel) {
+                [self setImageWithURL:url defaultImage:defaultImage queue:queue completion:^(UIImageView *imageView, NSURL *_url, UIImage *image, BOOL cancel) {
                     if (not [imageView.URL isEqual:_url]) return;
                     if (completion) {
                         completion(imageView, _url, image, cancel);

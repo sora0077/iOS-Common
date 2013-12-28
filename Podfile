@@ -1,9 +1,8 @@
 platform :ios, '7.0'
-pod 'AFNetworking'
-pod 'TMCache'
-pod 'libextobjc'
+pod 'iOS-Common', :path => '.'
+pod 'Facebook-iOS-SDK'
 
 target :'iOS-CommonTests' do
-        pod 'Kiwi'
+        pod 'Kiwi/XCTest'
         pod 'NLTHTTPStubServer'
 end

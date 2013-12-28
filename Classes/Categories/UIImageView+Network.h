@@ -9,12 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView (Network)
-@property (assign, nonatomic) NSOperationQueuePriority priority;
-
+@property (nonatomic) NSOperationQueuePriority priority;
 @property (readonly) NSURL *URL;
 
 - (void)setImageWithURL:(NSURL *)url
            defaultImage:(UIImage *)defaultImage
+             completion:(void(^)(UIImageView *imageView, NSURL *url, UIImage *image, BOOL cancel))completion;
+
+
+- (void)setImageWithURL:(NSURL *)url
+           defaultImage:(UIImage *)defaultImage
+                  queue:(NSOperationQueue *)queue
              completion:(void(^)(UIImageView *imageView, NSURL *url, UIImage *image, BOOL cancel))completion;
 
 - (void)cancel;
@@ -31,6 +36,19 @@
 - (void)setImageWithURL:(NSURL *)url
            thumbnailURL:(NSURL *)thumbnailURL
            defaultImage:(UIImage *)defaultImage
+                  queue:(NSOperationQueue *)queue
+             completion:(void (^)(UIImageView *imageView, NSURL *url, UIImage *image, BOOL cancel))completion;
+
+- (void)setImageWithURL:(NSURL *)url
+           thumbnailURL:(NSURL *)thumbnailURL
+           defaultImage:(UIImage *)defaultImage
+              thumbnail:(void (^)(UIImageView *imageView, NSURL *url, UIImage *image))thumbnail
+             completion:(void (^)(UIImageView *imageView, NSURL *url, UIImage *image, BOOL cancel))completion;
+
+- (void)setImageWithURL:(NSURL *)url
+           thumbnailURL:(NSURL *)thumbnailURL
+           defaultImage:(UIImage *)defaultImage
+                  queue:(NSOperationQueue *)queue
               thumbnail:(void (^)(UIImageView *imageView, NSURL *url, UIImage *image))thumbnail
              completion:(void (^)(UIImageView *imageView, NSURL *url, UIImage *image, BOOL cancel))completion;
 

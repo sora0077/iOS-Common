@@ -20,5 +20,6 @@
 
 
 - (NSString *(^)(id))arg;
+- (NSString *(^)(NSString *))append;
 
 @end

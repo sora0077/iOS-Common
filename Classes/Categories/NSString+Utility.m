@@ -27,7 +27,7 @@
 {
     const char *str = [self UTF8String];
     unsigned char xx[CC_SHA1_DIGEST_LENGTH];
-    CC_SHA1(str, strlen(str), xx);
+    CC_SHA1(str, (CC_LONG)strlen(str), xx);
     NSString *s = [NSString  stringWithFormat:
                    @"%02x%02x%02x%02x%02x"
                    @"%02x%02x%02x%02x%02x"
@@ -50,6 +50,13 @@
 {
     return ^NSString *(id obj) {
         return [NSString stringWithFormat:self, obj];
+    };
+}
+
+- (NSString *(^)(NSString *))append
+{
+    return ^NSString *(NSString *obj) {
+        return [self stringByAppendingString:obj];
     };
 }
 
