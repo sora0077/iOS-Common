@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A1BD7D9186E8F9B000AE408 /* NSStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1BD7D8186E8F9A000AE408 /* NSStringTests.m */; };
+		4A1BD7E7186F3605000AE408 /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1BD7E6186F3605000AE408 /* FacebookViewController.m */; };
+		4A1BD7E9186F361C000AE408 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A1BD7E8186F361C000AE408 /* Storyboard.storyboard */; };
 		4A8C2D1A1865C39600FFE876 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8C2D191865C39600FFE876 /* Foundation.framework */; };
 		4A8C2D1C1865C39600FFE876 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8C2D1B1865C39600FFE876 /* CoreGraphics.framework */; };
 		4A8C2D1E1865C39600FFE876 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8C2D1D1865C39600FFE876 /* UIKit.framework */; };
@@ -35,8 +37,11 @@
 
 /* Begin PBXFileReference section */
 		4A1BD7D8186E8F9A000AE408 /* NSStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTests.m; sourceTree = "<group>"; };
-		4A1BD7E2186EFFCF000AE408 /* iOS-CommonTests-Info.plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-CommonTests-Info.plist.h"; sourceTree = "<group>"; };
+		4A1BD7E2186EFFCF000AE408 /* iOS-Common-Info.plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Common-Info.plist.h"; sourceTree = "<group>"; };
 		4A1BD7E3186F3290000AE408 /* Classes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Classes; sourceTree = "<group>"; };
+		4A1BD7E5186F3605000AE408 /* FacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookViewController.h; sourceTree = "<group>"; };
+		4A1BD7E6186F3605000AE408 /* FacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookViewController.m; sourceTree = "<group>"; };
+		4A1BD7E8186F361C000AE408 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		4A8C2D161865C39600FFE876 /* iOS-Common.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Common.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8C2D191865C39600FFE876 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4A8C2D1B1865C39600FFE876 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,6 +98,15 @@
 			name = CategoriesTests;
 			sourceTree = "<group>";
 		};
+		4A1BD7E4186F35B8000AE408 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4A1BD7E5186F3605000AE408 /* FacebookViewController.h */,
+				4A1BD7E6186F3605000AE408 /* FacebookViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		4A8C2D0D1865C39600FFE876 = {
 			isa = PBXGroup;
 			children = (
@@ -132,10 +146,12 @@
 		4A8C2D1F1865C39600FFE876 /* iOS-Common */ = {
 			isa = PBXGroup;
 			children = (
+				4A1BD7E4186F35B8000AE408 /* ViewControllers */,
 				4A8C2D281865C39600FFE876 /* AppDelegate.h */,
 				4A8C2D291865C39600FFE876 /* AppDelegate.m */,
 				4A8C2D2B1865C39600FFE876 /* Images.xcassets */,
 				4A8C2D201865C39600FFE876 /* Supporting Files */,
+				4A1BD7E8186F361C000AE408 /* Storyboard.storyboard */,
 			);
 			path = "iOS-Common";
 			sourceTree = "<group>";
@@ -143,7 +159,7 @@
 		4A8C2D201865C39600FFE876 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4A1BD7E2186EFFCF000AE408 /* iOS-CommonTests-Info.plist.h */,
+				4A1BD7E2186EFFCF000AE408 /* iOS-Common-Info.plist.h */,
 				4A8C2D211865C39600FFE876 /* iOS-Common-Info.plist */,
 				4A8C2D221865C39600FFE876 /* InfoPlist.strings */,
 				4A8C2D251865C39600FFE876 /* main.m */,
@@ -251,6 +267,7 @@
 			files = (
 				4A8C2D241865C39600FFE876 /* InfoPlist.strings in Resources */,
 				4A8C2D2C1865C39600FFE876 /* Images.xcassets in Resources */,
+				4A1BD7E9186F361C000AE408 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1BD7E7186F3605000AE408 /* FacebookViewController.m in Sources */,
 				4A8C2D2A1865C39600FFE876 /* AppDelegate.m in Sources */,
 				4A8C2D261865C39600FFE876 /* main.m in Sources */,
 			);
@@ -408,7 +426,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "iOS-Common/iOS-CommonTests-Info.plist.h";
+				INFOPLIST_PREFIX_HEADER = "iOS-Common/iOS-Common-Info.plist.h";
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = DEBUG;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -445,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_PREFIX_HEADER = "iOS-Common/iOS-CommonTests-Info.plist.h";
+				INFOPLIST_PREFIX_HEADER = "iOS-Common/iOS-Common-Info.plist.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
