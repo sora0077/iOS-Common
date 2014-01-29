@@ -42,6 +42,8 @@
 
 @property (readonly) NSArray *logs;
 
++ (void)launch;
+
 - (void)login:(void (^)(FBUser *user, NSError *error))completion;
 - (void)logout;
 

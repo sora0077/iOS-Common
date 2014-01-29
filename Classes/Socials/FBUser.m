@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, FBActiveUserActionState){
     FBActiveUserActionState _actionState;
 }
 
-+ (void)load
++ (void)launch
 {
     [self activeUser];
 }
@@ -115,6 +115,7 @@ typedef NS_ENUM(NSInteger, FBActiveUserActionState){
             }];
         }
     } else {
+        __block void(^_completion)(FBUser *, NSError *) = [completion copy];
         _actionState = FBActiveUserActionStateLogin;
         [FBSession openActiveSessionWithReadPermissions:@[BASIC_PERMISSION]
                                            allowLoginUI:YES
@@ -122,10 +123,11 @@ typedef NS_ENUM(NSInteger, FBActiveUserActionState){
                                           [self sessionStateChanged:session state:status error:error];
                                           if (_actionState == FBActiveUserActionStateLogin) {
                                               if (session.isOpen) {
-                                                  [self login:completion];
+                                                  [self login:_completion];
                                               } else {
-                                                  if (completion) completion(nil, error);
+                                                  if (_completion) _completion(nil, error);
                                               }
+                                              _completion = nil;
                                               _actionState = FBActiveUserActionStateOther;
                                           }
                                       }];
@@ -153,6 +155,9 @@ typedef NS_ENUM(NSInteger, FBActiveUserActionState){
                 }
             }];
         } else {
+            if (request.session != [FBSession activeSession]) {
+                request.session = [FBSession activeSession];
+            }
             [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                 if (completion) {
                     completion(result, error);
@@ -177,12 +182,15 @@ typedef NS_ENUM(NSInteger, FBActiveUserActionState){
         if (permissions.count) {
             [[FBSession activeSession] requestNewPublishPermissions:permissions defaultAudience:audience completionHandler:^(FBSession *session, NSError *error) {
                 if (session.state == FBSessionStateOpenTokenExtended) {
-                    [self read:request permissions:permissions completion:completion];
+                    [self publish:request permissions:permissions audience:audience completion:completion];
                 } else {
                     if (completion) completion(nil, error);
                 }
             }];
         } else {
+            if (request.session != [FBSession activeSession]) {
+                request.session = [FBSession activeSession];
+            }
             [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                 if (completion) {
                     completion(result, error);
@@ -214,7 +222,7 @@ typedef NS_ENUM(NSInteger, FBActiveUserActionState){
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState)state error:(NSError *)error
 {
     if (!error && state == FBSessionStateOpen) {
-        NSLog(@"%s", __func__);
+//        NSLog(@"%s", __func__);
         return;
     }
     if (state == FBSessionStateClosed || state == FBSessionStateClosedLoginFailed) {
@@ -222,17 +230,17 @@ typedef NS_ENUM(NSInteger, FBActiveUserActionState){
     }
 
     if (error) {
-        if ([FBErrorUtility shouldNotifyUserForError:error]) {
-            NSString *message = [FBErrorUtility userMessageForError:error];
-            NSLog(@"%@", message);
-        } else {
-            if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
-                NSLog(@"user cancel");
-            } else {
-                NSDictionary *errorInfo = error.userInfo[@"com.facebook.sdk:ParsedJSONResponseKey"][@"body"][@"error"];
-                NSLog(@"%@", errorInfo);
-            }
-        }
+//        if ([FBErrorUtility shouldNotifyUserForError:error]) {
+//            NSString *message = [FBErrorUtility userMessageForError:error];
+//            NSLog(@"%@", message);
+//        } else {
+//            if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
+//                NSLog(@"user cancel");
+//            } else {
+//                NSDictionary *errorInfo = error.userInfo[@"com.facebook.sdk:ParsedJSONResponseKey"][@"body"][@"error"];
+//                NSLog(@"%@", errorInfo);
+//            }
+//        }
         [[FBSession activeSession] closeAndClearTokenInformation];
 
         

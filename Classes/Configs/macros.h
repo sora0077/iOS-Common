@@ -12,11 +12,12 @@
 #define and &&
 #define or ||
 
-#define _or_ ?:
+#define or_ ?:
 
 #define inline_return
 
-#define function(rtype, ...) ^rtype(__VA_ARGS__)
+//#define function(rtype, ...) ^rtype(__VA_ARGS__)
+#define function(rtype) ^rtype
 
 #define NAMESPACE_BEGIN {
 #define NAMESPACE_END   }

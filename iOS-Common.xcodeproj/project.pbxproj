@@ -107,6 +107,13 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		4A62B96B188D22D400FC45E5 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Mock;
+			sourceTree = "<group>";
+		};
 		4A8C2D0D1865C39600FFE876 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +153,7 @@
 		4A8C2D1F1865C39600FFE876 /* iOS-Common */ = {
 			isa = PBXGroup;
 			children = (
+				4A62B96B188D22D400FC45E5 /* Mock */,
 				4A1BD7E4186F35B8000AE408 /* ViewControllers */,
 				4A8C2D281865C39600FFE876 /* AppDelegate.h */,
 				4A8C2D291865C39600FFE876 /* AppDelegate.m */,
