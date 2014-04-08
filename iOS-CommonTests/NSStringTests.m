@@ -23,6 +23,22 @@ describe(@"NSString Category", ^{
         });
 
     });
+
+    context(@"snake case and camel case tests", ^{
+        it(@" be true", ^{
+            NSString *snakecase = @"apple_steve_jobs";
+            [[[snakecase camelcaseString] should] equal:@"appleSteveJobs"];
+
+            [[[[snakecase camelcaseString] snakecaseString] should] equal:snakecase];
+        });
+
+        it(@" be true", ^{
+            NSString *camelcase = @"microSoft";
+            [[[camelcase snakecaseString] should] equal:@"micro_soft"];
+
+            [[[[camelcase snakecaseString] camelcaseString] should] equal:camelcase];
+        });
+    });
 });
 
 SPEC_END

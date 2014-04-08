@@ -10,16 +10,31 @@
 
 @interface NSString (Utility)
 
++ (NSString *(^)(NSString *format, ...))format;
+
 - (NSString *)base64Encode;
 - (NSString *)base64Decode;
 
 - (NSString *)SHA1;
 - (NSString *)MD5;
 
+- (NSString *)snakecaseString;
+- (NSString *)camelcaseString;
+
 - (NSURL *)url;
+- (NSNumber *)number;
 
+- (id)jsonValue;
 
-- (NSString *(^)(id))arg;
+- (NSString *(^)(id))arg __attribute__((deprecated("Use format.")));
 - (NSString *(^)(NSString *))append;
 
+@end
+
+@interface NSDictionary (NSStringUtility)
+- (NSString *)jsonString;
+@end
+
+@interface NSArray (NSStringUtility)
+- (NSString *)jsonString;
 @end

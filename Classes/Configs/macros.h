@@ -19,6 +19,20 @@
 //#define function(rtype, ...) ^rtype(__VA_ARGS__)
 #define function(rtype) ^rtype
 
+#define __HELPER0(x) #x
+#define __HELPER1(x) __HELPER0(clang diagnostic ignored x)
+#define __HELPER2(y) __HELPER1(#y)
+#define PRAGMA_IGNORED(Warnings, Stuff) \
+    do { \
+        _Pragma("clang diagnostic push") \
+        _Pragma(__HELPER2(Warnings)) \
+        Stuff \
+        _Pragma("clang diagnostic pop") \
+    } while(0)
+
+#define PRAGMA_IGNORED_PerformSelectorLeaks(Stuff) \
+    PRAGMA_IGNORED(-Warc-performSelector-leaks, Stuff)
+
 #define NAMESPACE_BEGIN {
 #define NAMESPACE_END   }
 #define NAMESPACE_AND   }{

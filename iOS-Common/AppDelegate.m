@@ -8,11 +8,17 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <iOS-Common/macros.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    PRAGMA_IGNORED_PerformSelectorLeaks(
+                                        [self performSelector:@selector(description)];
+                                        );
+//    [self performSelector:@selector(description) withObject:@2];
     return YES;
 }
 
