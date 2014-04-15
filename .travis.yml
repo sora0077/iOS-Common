@@ -1,0 +1,8 @@
+language: objective-c
+ 
+before_install:
+ - gem install cocoapods -r
+ - pod setup
+ 
+script:
+ - xctool -workspace iOS-Common.xcworkspace -scheme iOS-Common -sdk iphonesimulator test ONLY_ACTIVE_ARCH=YES
