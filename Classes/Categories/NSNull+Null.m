@@ -19,7 +19,7 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
-    NSMethodSignature *sig=[[NSNull class] instanceMethodSignatureForSelector:aSelector];
+    NSMethodSignature *sig = [[NSNull class] instanceMethodSignatureForSelector:aSelector];
     // Just return some meaningless signature
     if (sig == nil) {
         sig = [NSMethodSignature signatureWithObjCTypes:"@^v^c"];

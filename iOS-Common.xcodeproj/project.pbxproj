@@ -38,7 +38,6 @@
 /* Begin PBXFileReference section */
 		4A1BD7D8186E8F9A000AE408 /* NSStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTests.m; sourceTree = "<group>"; };
 		4A1BD7E2186EFFCF000AE408 /* iOS-Common-Info.plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-Common-Info.plist.h"; sourceTree = "<group>"; };
-		4A1BD7E3186F3290000AE408 /* Classes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Classes; sourceTree = "<group>"; };
 		4A1BD7E5186F3605000AE408 /* FacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookViewController.h; sourceTree = "<group>"; };
 		4A1BD7E6186F3605000AE408 /* FacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookViewController.m; sourceTree = "<group>"; };
 		4A1BD7E8186F361C000AE408 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -117,7 +116,6 @@
 		4A8C2D0D1865C39600FFE876 = {
 			isa = PBXGroup;
 			children = (
-				4A1BD7E3186F3290000AE408 /* Classes */,
 				4A8C2D1F1865C39600FFE876 /* iOS-Common */,
 				4A8C2D381865C39600FFE876 /* iOS-CommonTests */,
 				4A8C2D181865C39600FFE876 /* Frameworks */,

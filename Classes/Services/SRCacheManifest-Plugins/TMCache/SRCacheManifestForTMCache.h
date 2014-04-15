@@ -11,7 +11,9 @@
 
 @interface SRCacheManifestForTMCache : NSObject <SRCacheManifest>
 
-- (id)initWithCache:(id)cache;
+//- (id)initWithCache:(id)cache;
+
++ (instancetype)cacheManifestWithCache:(id)cache;;
 
 @property(nonatomic, readonly) TMCache *cache;
 

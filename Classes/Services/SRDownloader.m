@@ -38,10 +38,10 @@
 }
 
 
-+ (void)doCompletion:(void (^)(id, NSError *))completion :(id)object :(NSError *)error
++ (void)doCompletion:(void (^)(id, NSError *, SRCacheType))completion :(id)object :(NSError *)error :(SRCacheType)cacheType
 {
     if (completion) {
-        completion(object, error);
+        completion(object, error, cacheType);
     }
 }
 
@@ -55,10 +55,21 @@
     return self;
 }
 
-- (void)downloaderWithRequest:(NSURLRequest *)request completion:(void (^)(id, NSError *))completion
+- (void)dealloc
+{
+    [_operation cancel];
+}
+
+- (void)downloaderWithRequest:(NSURLRequest *)request completion:(void (^)(id, NSError *, SRCacheType))completion
+{
+    [self downloaderWithRequest:request cacheHit:YES completion:completion];
+}
+
+
+- (void)downloaderWithRequest:(NSURLRequest *)request cacheHit:(BOOL)cacheHit completion:(void (^)(id, NSError *, SRCacheType))completion
 {
     _request = request;
-    if (_cacheManifest) {
+    if (cacheHit) {
         [self getObjectFromCache:request completion:completion];
     } else {
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -69,10 +80,10 @@
                 [_cacheManifest setObject:responseObject forKey:request.URL.description];
             }
             if (woperation.isCancelled) return;
-            [SRDownloader doCompletion:completion :responseObject :nil];
+            [SRDownloader doCompletion:completion :responseObject :nil :SRCacheTypeNone];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             if (woperation.isCancelled) return;
-            [SRDownloader doCompletion:completion :nil :error];
+            [SRDownloader doCompletion:completion :nil :error :SRCacheTypeNone];
         }];
         
         _operation = operation;
@@ -80,18 +91,17 @@
     }
 }
 
-- (void)getObjectFromCache:(NSURLRequest *)request completion:(void (^)(id, NSError *))completion
+- (void)getObjectFromCache:(NSURLRequest *)request completion:(void (^)(id, NSError *, SRCacheType))completion
 {
     NSBlockOperation *operation = [[NSBlockOperation alloc] init];
     __weak typeof(operation) woperation = operation;
     [operation addExecutionBlock:^{
-        [_cacheManifest objectForKey:request.URL.description block:^(NSString *aKey, id object) {
+        [_cacheManifest objectForKey:request.URL.description block:^(NSString *aKey, id object, SRCacheType cacheType) {
             if (woperation.isCancelled) return;
             if (object) {
-                [SRDownloader doCompletion:completion :object :nil];
+                [SRDownloader doCompletion:completion :object :nil :cacheType];
             } else {
-                _cacheManifest = nil;
-                [self downloaderWithRequest:request completion:completion];
+                [self downloaderWithRequest:request cacheHit:NO completion:completion];
             }
         }];
     }];

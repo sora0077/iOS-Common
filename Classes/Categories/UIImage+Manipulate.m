@@ -41,7 +41,8 @@
 
 - (UIImage *)circleImage
 {
-    return [self clipCornerRadius:MAX(self.size.width, self.size.height) / 2];
+    UIImage *squareImage = [self squareImage];
+    return [squareImage clipCornerRadius:MAX(squareImage.size.width, squareImage.size.height) / 2];
 }
 
 - (UIImage *)clipCornerRadius:(CGFloat)cornerRadius

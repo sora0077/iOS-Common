@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, SRCacheType){
+    SRCacheTypeNone,
+    SRCacheTypeDisk,
+    SRCacheTypeMemory,
+};
+
 @protocol SRCacheManifest <NSObject>
 @required
-- (void)objectForKey:(NSString *)aKey block:(void (^)(NSString *aKey, id object))block;
+- (void)objectForKey:(NSString *)aKey block:(void (^)(NSString *aKey, id object, SRCacheType cacheType))block;
 - (void)setObject:(id)anObject forKey:(id<NSCopying>)aKey;
 @end

@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SRCacheManifest.h"
 
-@protocol SRCacheManifest;
 @interface SRDownloader : NSObject
 
 + (instancetype)downloaderWithQueue:(NSOperationQueue *)queue;
 
 - (id)initWithQueue:(NSOperationQueue *)queue manifest:(id<SRCacheManifest> )cacheManifest;
 
-- (void)downloaderWithRequest:(NSURLRequest *)request completion:(void (^)(id object, NSError *error))completion;
+- (void)downloaderWithRequest:(NSURLRequest *)request completion:(void (^)(id object, NSError *error, SRCacheType cacheType))completion;
 
 @property (nonatomic, readonly) NSURLRequest *request;
 @property (nonatomic, weak) NSOperation *operation;
