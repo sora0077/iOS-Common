@@ -32,7 +32,7 @@
             [dict setObject:val forKey:key];
         }
     }
-    return dict;
+    return [dict copy];
 }
 
 - (NSURL *)URLByAppendingQuery:(id)query forKey:(NSString *)key

@@ -37,6 +37,11 @@
     return [[self alloc] initWithQueue:queue manifest:nil];
 }
 
++ (instancetype)downloaderWithQueue:(NSOperationQueue *)queue manifest:(id<SRCacheManifest>)cacheManifest
+{
+    return [[self alloc] initWithQueue:queue manifest:cacheManifest];
+}
+
 
 + (void)doCompletion:(void (^)(id, NSError *, SRCacheType))completion :(id)object :(NSError *)error :(SRCacheType)cacheType
 {

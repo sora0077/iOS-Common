@@ -12,6 +12,7 @@
 @interface SRDownloader : NSObject
 
 + (instancetype)downloaderWithQueue:(NSOperationQueue *)queue;
++ (instancetype)downloaderWithQueue:(NSOperationQueue *)queue manifest:(id<SRCacheManifest> )cacheManifest;
 
 - (id)initWithQueue:(NSOperationQueue *)queue manifest:(id<SRCacheManifest> )cacheManifest;
 
