@@ -18,7 +18,7 @@
 
     if (origMethod && newMethod) {
         IMP origIMP = method_getImplementation(origMethod);
-        if (class_addMethod(self, newSelector, origMethod, method_getTypeEncoding(origMethod))) {
+        if (class_addMethod(self, newSelector, origIMP, method_getTypeEncoding(origMethod))) {
             class_replaceMethod(self, newSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
         } else {
             method_exchangeImplementations(origMethod, newMethod);
@@ -35,7 +35,7 @@
 
     if (origMethod && newMethod) {
         IMP origIMP = method_getImplementation(origMethod);
-        if (class_addMethod(self, newSelector, origMethod, method_getTypeEncoding(origMethod))) {
+        if (class_addMethod(self, newSelector, origIMP, method_getTypeEncoding(origMethod))) {
             class_replaceMethod(self, newSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
         } else {
             method_exchangeImplementations(origMethod, newMethod);

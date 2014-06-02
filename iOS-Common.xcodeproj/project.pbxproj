@@ -204,6 +204,7 @@
 				4A8C2D131865C39600FFE876 /* Frameworks */,
 				4A8C2D141865C39600FFE876 /* Resources */,
 				3A4A20635E0E4349A0371ACD /* Copy Pods Resources */,
+				4A9DC10919002DDA00CD9D3A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -332,6 +333,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4A9DC10919002DDA00CD9D3A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 		BF94AA0597844271B1CD9860 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

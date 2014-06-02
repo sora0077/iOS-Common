@@ -10,15 +10,15 @@
 
 @implementation UIColor (App)
 
-+ (UIColor *)mainColor
-{
-    return nil;
-}
+//+ (UIColor *)mainColor
+//{
+//    return nil;
+//}
 
-+ (UIColor *)accentColor
-{
-    return [[self mainColor] accent];
-}
+//+ (UIColor *)accentColor
+//{
+//    return [[self mainColor] accent];
+//}
 
 + (UIColor *)colorWithHex:(NSString *)hexCode
 {

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SRUpdateVersion : NSObject
+@interface SRVersion : NSObject
 
 @property (nonatomic, copy, readonly) NSString *applicationVersion;
 @property (nonatomic, copy, readonly) NSString *systemVersion;
@@ -22,8 +22,8 @@
 
 @interface SRUpdateDevice : NSObject
 
-- (id)initWithVersion:(SRUpdateVersion *)version;
+- (id)initWithVersion:(SRVersion *)version;
 
-- (BOOL)isUpdateVersion:(SRUpdateVersion *)nextVersion;
+- (BOOL)isUpdateVersion:(SRVersion *)nextVersion;
 
 @end

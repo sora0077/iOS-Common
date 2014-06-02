@@ -10,8 +10,8 @@
 
 @interface UIColor (App)
 
-+ (UIColor *)mainColor;
-+ (UIColor *)accentColor;
+//+ (UIColor *)mainColor;
+//+ (UIColor *)accentColor;
 
 + (UIColor *)colorWithHex:(NSString *)hexCode;
 

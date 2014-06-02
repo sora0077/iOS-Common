@@ -53,7 +53,7 @@
 		NSMutableArray *objects = [NSMutableArray arrayWithCapacity:keys.count];\
 		\
 		va_start(args, format);\
-		for (id key in keys) {\
+		for (__unused id key in keys) {\
 			id object = va_arg(args, id);\
 			object = object ? object : @"nil";\
 			[objects addObject:object];\
@@ -90,3 +90,15 @@
             ivar(__VA_ARGS__);\
         }\
     } while (0)
+
+#define dispatch_async_if(cond, queue, block) \
+do { \
+    if (cond && block) { \
+        dispatch_async(queue, ^{ \
+            if (cond) { \
+                block(); \
+            } \
+        }); \
+    } \
+} while (0)
+

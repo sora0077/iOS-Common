@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "iOS-Common"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "A short description of iOS-Common."
 
   s.description  = <<-DESC
@@ -31,9 +31,9 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/sora0077/iOS-Common"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "t.hayashi" => "t.hayashi0077+bitbucket@gmail.com" }
-  s.platform     = :ios, '6.0'
+  s.platform     = :ios, '7.0'
 
-  s.source       = { :git => "https://github.com/sora0077/iOS-Common.git", :tag => "0.0.3" }
+  s.source       = { :git => "https://github.com/sora0077/iOS-Common.git", :tag => "0.0.4" }
 
   s.source_files  = 'Classes/**/*.{h,m}'
   s.exclude_files = 'iOS-Common/iOS-Common-Info.plist.h'
@@ -49,6 +49,7 @@ Pod::Spec.new do |s|
   s.dependency 'TMCache'
   s.dependency 'libextobjc/EXTScope'
   s.dependency 'Facebook-iOS-SDK'
+  s.dependency 'Bolts'
 
   s.requires_arc = true
 end

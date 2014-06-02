@@ -8,10 +8,10 @@
 
 #import "SRUpdateDevice.h"
 
-@interface SRUpdateVersion ()
+@interface SRVersion ()
 @end
 
-@implementation SRUpdateVersion
+@implementation SRVersion
 
 - (id)initWithApplicationVersion:(NSString *)applicationVersion systemVersion:(NSString *)systemVersion deviceVersion:(NSString *)deviceVersion
 {
@@ -24,15 +24,27 @@
     return self;
 }
 
+- (BOOL)isEqual:(SRVersion *)object
+{
+    if ([self isKindOfClass:[object class]]) {
+        if ([self.applicationVersion isEqualToString:object.applicationVersion]
+            && [self.systemVersion isEqualToString:object.systemVersion]
+            && [self.deviceVersion isEqualToString:object.deviceVersion]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end
 
 @implementation SRUpdateDevice
 {
-    SRUpdateVersion *_currentVersion;
+    SRVersion *_currentVersion;
 }
 
 
-- (id)initWithVersion:(SRUpdateVersion *)version
+- (id)initWithVersion:(SRVersion *)version
 {
     self = [super init];
     if (self) {
@@ -41,17 +53,12 @@
     return self;
 }
 
-- (BOOL)isUpdateVersion:(SRUpdateVersion *)nextVersion
+- (BOOL)isUpdateVersion:(SRVersion *)nextVersion
 {
     if (nextVersion == nil || _currentVersion == nil) {
         return NO;
     }
-    if ([_currentVersion.applicationVersion isEqualToString:nextVersion.applicationVersion]
-        && [_currentVersion.systemVersion isEqualToString:nextVersion.systemVersion]
-        && [_currentVersion.deviceVersion isEqualToString:nextVersion.deviceVersion]) {
-        return NO;
-    }
-    return YES;
+    return ![_currentVersion isEqual:nextVersion];
 }
 
 
