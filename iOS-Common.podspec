@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "iOS-Common"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "A short description of iOS-Common."
 
   s.description  = <<-DESC
@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   s.author       = { "t.hayashi" => "t.hayashi0077+bitbucket@gmail.com" }
   s.platform     = :ios, '7.0'
 
-  s.source       = { :git => "https://github.com/sora0077/iOS-Common.git", :tag => "0.0.4" }
+  s.source       = { :git => "https://github.com/sora0077/iOS-Common.git", :tag => s.version }
 
   s.source_files  = 'Classes/**/*.{h,m}'
   s.exclude_files = 'iOS-Common/iOS-Common-Info.plist.h'
@@ -50,6 +50,7 @@ Pod::Spec.new do |s|
   s.dependency 'libextobjc/EXTScope'
   s.dependency 'Facebook-iOS-SDK'
   s.dependency 'Bolts'
+  s.dependency 'Aspects'
 
   s.requires_arc = true
 end
